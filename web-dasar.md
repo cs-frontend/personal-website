@@ -29,7 +29,7 @@
     </nav>
 
     <div class="profile-image">
-      <img src="assets/images/profile.jpg" alt="profile image">
+      <img src="images/profile.jpg" alt="profile image">
     </div>
 
     <div class="job-title">
@@ -55,7 +55,7 @@
 }
 
 header {
-  height: 500px;
+  height: 400px;
   position: relative;
   background-color: #22223b;
 }
@@ -111,8 +111,8 @@ nav ul li a.active {
   position: absolute;
   left: 140px;
   bottom: -130px;
-  width: 320px;
-  height: 400px;
+  width: 240px;
+  height: 300px;
   z-index: 1;
 }
 
@@ -126,7 +126,7 @@ nav ul li a.active {
 .job-title {
   position: absolute;
   bottom: 40px;
-  left: calc(140px + 320px + 40px);
+  left: calc(140px + 240px + 40px);
 }
 
 .job-title h4 {
@@ -137,7 +137,7 @@ nav ul li a.active {
 
 .job-title h1 {
   color: #ffffff;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
 }
 ```
