@@ -29,3 +29,43 @@
 </body>
 </html>
 ```
+
+### CSS 
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ddd;
+}
+
+nav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0px 140px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+```
