@@ -187,7 +187,7 @@ main p {
 
       <article>
         <div class="logo">
-          <img src="assets/images/binus.jpeg" alt="binus">
+          <img src="images/binus.jpeg" alt="binus">
         </div>
 
         <div class="content">
@@ -199,7 +199,7 @@ main p {
 
       <article>
         <div class="logo">
-          <img src="assets/images/smk-yaj.jpeg" alt="smk yaj">
+          <img src="images/smk-yaj.jpeg" alt="smk yaj">
         </div>
 
         <div class="content">
