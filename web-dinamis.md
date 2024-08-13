@@ -183,7 +183,11 @@ function fetchData() {
   const apiUrl =
     "https://personal-website-api-mauve.vercel.app/users/clzqbt2um0000120uiy6cnjku";
 
+  // Mengatur method dan URL
   xhr.open("GET", apiUrl, true);
+
+  // Mengatur CORS
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
 
   const loadingEl = document.getElementById("loading");
 
@@ -302,6 +306,72 @@ function displayData(userData) {
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchData();
+});
+```
+
+# Mengirim data pada server
+
+### Tambahkan kode berikut pada file script.js
+
+```
+// Fungsi untuk mengirim data feedback ke server
+function submitFeedback(data) {
+  const loadingEl = document.getElementById("loading");
+
+  // Menampilkan loading
+  loadingEl.style.display = "flex";
+
+  const xhr = new XMLHttpRequest();
+
+  const apiUrl = "https://personal-website-api-mauve.vercel.app/users/feedback";
+  const userId = "clzqbt2um0000120uiy6cnjku"
+
+  // Mengatur method dan URL
+  xhr.open("POST", apiUrl, true);
+
+  // Mengatur CORS
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+  // Mengatur Content-Type
+  xhr.setRequestHeader("Content-Type", "application/json");
+  
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      console.log("Feedback submitted successfully");
+    } else {
+      console.error("Failed to submit feedback");
+    }
+
+    // Menyembunyikan loading
+    loadingEl.style.display = "none";
+  };
+
+  xhr.onerror = function () {
+    console.error("Request error");
+
+    // Menyembunyikan loading
+    loadingEl.style.display = "none";
+  };
+
+  const feedbackBody = {
+    user_id: userId,
+    name: data.name,
+    email: data.email,
+    message: data.message,
+  };
+
+  xhr.send(JSON.stringify(feedbackBody));
+}
+
+// Handle request feedback form
+const feedbackForm = document.querySelector("#feedback form");
+feedbackForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(feedbackForm);
+  const data = Object.fromEntries(formData.entries());
+
+  submitFeedback(data);
 });
 ```
 
