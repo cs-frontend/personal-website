@@ -240,7 +240,7 @@ function displayData(userData) {
 
   // Menampilkan data pendidikan user
   const elEducation = document.getElementById("education");
-  elEducation.innerHTML = "";
+  elEducation.innerHTML = "<h2>Education</h2>";
   userData.educations.forEach((item) => {
     const period = formatDate(item.start_at) + " - " + formatDate(item.end_at);
     
