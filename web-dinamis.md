@@ -135,6 +135,32 @@ document.addEventListener("DOMContentLoaded", () => {
 </p>
 ```
 
+#### Contact
+```
+<div class="list-contact">
+  <a href="https://api.whatsapp.com/send?phone=6281234567890" id="whatsapp">
+    <div class="icon">
+      <img src="icons/whatsapp.png" alt="whatsapp">
+    </div>
+  </a>
+  <a href="https://www.linkedin.com/in/angelica-stephanie" id="linkedin">
+    <div class="icon">
+      <img src="icons/linkedin.png" alt="linkedin">
+    </div>
+  </a>
+  <a href="https://github.com/angelica-stephanie" id="github">
+    <div class="icon">
+      <img src="icons/github.png" alt="github">
+    </div>
+  </a>
+  <a href="mailto:Uw9j3@example.com" id="email">
+    <div class="icon">
+      <img src="icons/email.png" alt="email">
+    </div>
+  </a>
+</div>
+```
+
 ### Membuat fungsi untuk mengambil data dari server, modifikasi script.js menjadi seperti berikut
 ```
 const toggleMenu = document.getElementById("toggle-menu");
@@ -192,8 +218,6 @@ function formatDate(date) {
 
 // Fungsi untuk menampilkan data
 function displayData(userData) {
-  console.log(userData);
-
   // Menampilkan data nama user
   const elName = document.getElementById("user-fullname");
   elName.textContent = userData.name;
@@ -254,6 +278,22 @@ function displayData(userData) {
     `;
     elPortofolio.lastElementChild.innerHTML += portofolioItem;
   });
+
+  // Menampilkan data kontak whatsapp user
+  const elWhatsapp = document.getElementById("whatsapp");
+  elWhatsapp.setAttribute("href", `https://api.whatsapp.com/send?phone=${userData.whatsapp}`);
+
+  // Menampilkan data kontak linkedin user
+  const elLinkedin = document.getElementById("linkedin");
+  elLinkedin.setAttribute("href", userData.linkedin);
+
+  // Menampilkan data kontak github user
+  const elGithub = document.getElementById("github");
+  elGithub.setAttribute("href", userData.github);
+
+  // Menampilkan data kontak email user
+  const elEmail = document.getElementById("email");
+  elEmail.setAttribute("href", `mailto:${userData.email}`);
 
   // Mengubah nama di footer sesuai data user
   const elFooter = document.querySelector("footer strong");
