@@ -52,7 +52,7 @@ header nav ul.active {
 
 # Menambahkan Loading
 
-### Masukan kode berikut pada index.html setelah tag </footer>
+### Masukan kode berikut pada index.html setelah tag footer
 
 ```
 <!-- Loading -->
