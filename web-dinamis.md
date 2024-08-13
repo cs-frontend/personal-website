@@ -336,7 +336,7 @@ function submitFeedback(data) {
   xhr.setRequestHeader("Content-Type", "application/json");
   
   xhr.onload = function () {
-    if (xhr.status === 200) {
+    if (xhr.status === 201) {
       console.log("Feedback submitted successfully");
     } else {
       console.error("Failed to submit feedback");
