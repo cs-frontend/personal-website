@@ -49,3 +49,59 @@ header nav ul.active {
   }
 }
 ```
+
+# Menambahkan Loading
+
+### Masukan kode berikut pada index.html setelah tag </footer>
+
+```
+<!-- Loading -->
+<div id="loading">
+  <div class="loading-indicator"></div>
+</div>
+```
+
+### Tambahkan kode css berikut pada file style.css
+
+```
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #22223b9e;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-indicator {
+  width: 50px;
+  height: 50px;
+  border-radius: 9999px;
+  border: 4px solid #ffffff;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+```
+
+### Menambahkan fungsi untuk menghilangkan loading setelah 2 detik, tambahkan kode berikut pada script.js
+
+```
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingEl = document.getElementById("loading");
+
+  setTimeout(() => {
+    loadingEl.style.display = "none";
+  }, 2000);
+});
+```
+
