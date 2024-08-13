@@ -105,3 +105,163 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
+# Menampilkan data dari server
+
+### Menambahkan attribut id pada elemen html yang akan diubah menjadi data dinamis
+
+#### Nama
+```
+<a href="#" id="user-fullname">Angelica Stephanie</a>
+```
+
+#### Profile Image
+```
+<img src="images/profile.jpg" alt="profile image" id="user-profile-image">
+```
+
+#### Job Title
+```
+<div class="job-title">
+  <h4>Hi, I am a</h4>
+  <h1 id="user-job-title">Graphic Designer</h1>
+</div>
+```
+
+#### Bio
+```
+<p class="bio" id="user-bio">
+  Passionate graphic designer seeking remote opportunities to bring creative visions to life.
+  Let's collaborate and create something extraordinary! 🎨✨ #GraphicDesigner #RemoteWork #CreativityUnleashed
+</p>
+```
+
+### Membuat fungsi untuk mengambil data dari server, modifikasi script.js menjadi seperti berikut
+```
+const toggleMenu = document.getElementById("toggle-menu");
+const navMenu = document.querySelector("nav>ul");
+
+toggleMenu.addEventListener("click", () => {
+  const isActive = navMenu.classList.contains("active");
+
+  if (isActive) {
+    navMenu.classList.remove("active");
+  } else {
+    navMenu.classList.toggle("active");
+  }
+});
+
+// Fungsi untuk mengambil data dari server
+function fetchData() {
+  var xhr = new XMLHttpRequest();
+
+  const apiUrl =
+    "https://personal-website-api-mauve.vercel.app/users/clzqbt2um0000120uiy6cnjku";
+
+  xhr.open("GET", apiUrl, true);
+
+  const loadingEl = document.getElementById("loading");
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+
+      displayData(data.user);
+    } else {
+      console.error("Failed to fetch data");
+    }
+
+    // Menyembunyikan loading
+    loadingEl.style.display = "none";
+  };
+
+  xhr.onerror = function () {
+    console.error("Request error");
+
+    // Menyembunyikan loading
+    loadingEl.style.display = "none";
+  };
+
+  xhr.send();
+}
+
+// Fungsi untuk membuat format tanggal DD MMM YYYY
+function formatDate(date) {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(date).toLocaleDateString("id-ID", options);
+}
+
+// Fungsi untuk menampilkan data
+function displayData(userData) {
+  console.log(userData);
+
+  // Menampilkan data nama user
+  const elName = document.getElementById("user-fullname");
+  elName.textContent = userData.name;
+
+  // Menampilkan data pekerjaan user
+  const elJobTitle = document.getElementById("user-job-title");
+  elJobTitle.textContent = userData.job_title;
+
+  // Menampilkan data profil user
+  const elProfileImage = document.getElementById("user-profile-image");
+  elProfileImage.src = userData.image;
+
+  // Menampilkan data bio user
+  const elBio = document.getElementById("user-bio");
+  elBio.textContent = userData.bio;
+
+  // Menampilkan data pendidikan user
+  const elEducation = document.getElementById("education");
+  elEducation.innerHTML = "";
+  userData.educations.forEach((item) => {
+    const period = formatDate(item.start_at) + " - " + formatDate(item.end_at);
+    
+    const educationItem = `
+      <article>
+        <div class="logo">
+          <img src="${item.image}" alt="logo">
+        </div>
+
+        <div class="content">
+          <h3>${item.major}</h3>
+          <h4>${item.name}</h4>
+          <p>${period}</p>
+        </div>
+      </article>
+    `;
+    elEducation.innerHTML += educationItem;
+  });
+
+  // Menampilkan data portofolio user
+  const elPortofolio = document.getElementById("portofolio");
+  elPortofolio.lastElementChild.innerHTML = "";
+
+  userData.portofolios.forEach((item) => {
+    const portofolioItem = `
+      <article>
+        <div class="image-portofolio">
+          <img src="${item.image}" alt="portofolio">
+        </div>
+
+        <div class="content-portofolio">
+          <h3>${item.name}</h3>
+          <h4>Role as ${item.role}</h4>
+          <p>${item.description}</p>
+
+          <button onclick="window.open('${item.url}')">View</button>
+        </div>
+      </article>
+    `;
+    elPortofolio.lastElementChild.innerHTML += portofolioItem;
+  });
+
+  // Mengubah nama di footer sesuai data user
+  const elFooter = document.querySelector("footer strong");
+  elFooter.textContent = userData.name;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetchData();
+});
+```
+
