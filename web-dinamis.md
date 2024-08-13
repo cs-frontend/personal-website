@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 ```
 
-### Membuat fungsi untuk mengambil data dari server, modifikasi script.js menjadi seperti berikut
+### Membuat fungsi untuk mengambil data dari server, modifikasi seluruh kode pada script.js menjadi seperti berikut
 ```
 const toggleMenu = document.getElementById("toggle-menu");
 const navMenu = document.querySelector("nav>ul");
